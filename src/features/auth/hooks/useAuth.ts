@@ -6,7 +6,7 @@ import { getRouteMain } from '@/shared/const/router.ts'
 import { useNavigate } from 'react-router-dom'
 
 export const useAuth = () => {
-    const isAuthenticated = authService.isAuth
+    const isAuthenticated = authService.getIsAuthenticated()
     const navigate = useNavigate()
 
     const {

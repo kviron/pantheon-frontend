@@ -1,3 +1,3 @@
-import ErrorBoundary from './ui/ErrorBoundary.tsx';
+import ErrorBoundary from './ui/error.boundary.tsx'
 
-export { ErrorBoundary };
+export { ErrorBoundary }

@@ -1,15 +1,15 @@
-import { Layout } from 'antd';
-import { LibraryPageSidebar } from '../Sidebar';
-import { LibraryPageContent } from '@/pages/LibraryPage/ui/Content';
-import { useQuery } from '@tanstack/react-query';
-import { gameService } from '@/entities/Game';
+import { Layout } from 'antd'
+import { LibraryPageSidebar } from '../Sidebar'
+import { LibraryPageContent } from '@/pages/LibraryPage/ui/Content'
+import { useQuery } from '@tanstack/react-query'
+import { applicationService } from '@/entities/application'
 
 export const LibraryPage = () => {
     const { data, isFetching, isLoading } = useQuery({
         queryKey: ['games', 'library'],
-        queryFn: () => gameService.getGames(),
-        select: data => data.data,
-    });
+        queryFn: () => applicationService.getList(),
+        select: data => data.data
+    })
 
     return (
         <Layout>
@@ -20,5 +20,5 @@ export const LibraryPage = () => {
             />
             <LibraryPageContent />
         </Layout>
-    );
-};
+    )
+}

@@ -1,4 +1,4 @@
-import { UserGender, UserRole } from './user.const.ts'
+import { UserGender, UserRole } from './user.const'
 import { Entity } from '@/shared/types/entity.ts'
 
 export interface User extends Entity {

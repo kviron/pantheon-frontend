@@ -1,18 +1,18 @@
-import { $api } from '@/shared/api/api.ts'
-import { AuthForm } from './auth.types.ts'
+import { $api } from '@/shared/api/api'
+import { AuthForm } from './auth.types'
 import { authTokenService } from './auth.token.service'
 import { AxiosResponse } from 'axios'
-import { User } from '@/entities/User/model/user.types.ts'
+import { User } from '@/entities/user'
 
 class AuthService {
-    isAuth: boolean = false
+    getIsAuthenticated() {
+        return !!authTokenService.getAccessToken()
+    }
 
     async register(data: any) {
         const response = await $api.post(`/auth/register`, data)
 
         if (response.data.accessToken) authTokenService.saveAccessToken(response.data.accessToken)
-
-        this.isAuth = true
 
         return response
     }
@@ -21,8 +21,6 @@ class AuthService {
         const response = await $api.post(`/auth/login`, data)
 
         if (response.data.accessToken) authTokenService.saveAccessToken(response.data.accessToken)
-
-        this.isAuth = true
 
         return response
     }
@@ -39,8 +37,6 @@ class AuthService {
         const response = await $api.post<boolean>('/auth/logout')
 
         if (response.data) authTokenService.removeAccessToken()
-
-        this.isAuth = false
 
         return response
     }
