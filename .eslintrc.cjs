@@ -2,35 +2,25 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
-        jest: true,
+        jest: true
     },
-    extends: [
-        'plugin:react/recommended',
-        'plugin:i18next/recommended',
-        'prettier',
-    ],
+    extends: ['plugin:react/recommended', 'plugin:i18next/recommended', 'prettier'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
-            jsx: true,
+            jsx: true
         },
         ecmaVersion: 'latest',
-        sourceType: 'module',
+        sourceType: 'module'
     },
-    plugins: [
-        'react',
-        '@typescript-eslint',
-        'i18next',
-        'react-hooks',
-        'unused-imports',
-    ],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'unused-imports'],
     rules: {
         'unused-imports/no-unused-imports': 'error',
         'react/jsx-filename-extension': [
             2,
             {
-                extensions: ['.js', '.jsx', '.tsx'],
-            },
+                extensions: ['.js', '.jsx', '.tsx']
+            }
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
@@ -63,16 +53,16 @@ module.exports = {
                     'color',
                     'variant',
                     'size',
-                    'wrap',
-                ],
-            },
+                    'wrap'
+                ]
+            }
         ],
         'max-len': [
             'error',
             {
                 ignoreComments: true,
-                code: 125,
-            },
+                code: 125
+            }
         ],
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
@@ -85,20 +75,20 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
         'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
-        'react/no-unstable-nested-components': 'warn',
+        'react/no-unstable-nested-components': 'warn'
     },
     globals: {
         __IS_DEV__: true,
         __API__: true,
-        __PROJECT__: true,
+        __PROJECT__: true
     },
     overrides: [
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
-                'max-len': 'off',
-            },
-        },
-    ],
-};
+                'max-len': 'off'
+            }
+        }
+    ]
+}
