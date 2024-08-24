@@ -1,7 +1,7 @@
-import { routeConfig } from '@/app/providers/RouterProvider/config/routeConfig.tsx'
+import { routeConfig } from '@/shared/config'
 import { Routes } from 'react-router'
 import { Route, useNavigate } from 'react-router-dom'
-import { MainLayout } from '@/shared/layouts/MainLayout'
+import { MainLayout } from '@/shared/layouts/main'
 import { useAuth } from '@/features/auth'
 import { AuthEntry } from '@/features/auth/ui/auth.entry.tsx'
 import { getRouteLogin } from '@/shared/const/router.ts'
@@ -22,26 +22,24 @@ const App = () => {
     }
 
     return (
-        <>
-            <Routes>
-                {Object.values(routeConfig)
-                    .filter(route => route.isMainMenu)
-                    .map(route => {
-                        return (
+        <Routes>
+            {Object.values(routeConfig)
+                .filter(route => route.isMainMenu)
+                .map(route => {
+                    return (
+                        <Route
+                            key={route.path}
+                            path='/'
+                            element={<MainLayout />}
+                        >
                             <Route
-                                key={route.path}
-                                path='/'
-                                element={<MainLayout />}
-                            >
-                                <Route
-                                    path={route.path}
-                                    element={route.element}
-                                />
-                            </Route>
-                        )
-                    })}
-            </Routes>
-        </>
+                                path={route.path}
+                                element={route.element}
+                            />
+                        </Route>
+                    )
+                })}
+        </Routes>
     )
 }
 
