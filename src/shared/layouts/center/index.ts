@@ -1,3 +1,3 @@
-import { CenterLayout } from './ui/center.layout.tsx'
+import { CenterLayout } from './center.layout'
 
 export { CenterLayout }

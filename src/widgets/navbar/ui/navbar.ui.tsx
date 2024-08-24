@@ -1,4 +1,4 @@
-import s from './Navbar.module.scss'
+import s from './navbar.module.scss'
 import {
     ArrowLeftOutlined,
     ArrowRightOutlined,
@@ -8,20 +8,21 @@ import {
     SettingOutlined
 } from '@ant-design/icons'
 import { Button, Menu, MenuProps, Space, Badge, Tooltip } from 'antd'
-import { routeConfig } from '@/app/providers/RouterProvider/config/routeConfig.tsx'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ThemeSwitcher } from '@/features/themeSwitcher/ui/themeSwitcher.ui.tsx'
 import { useEffect, useState } from 'react'
 import { AppRoutes } from '@/shared/const/router.ts'
 import { useAuth } from '@/features/auth'
+import { routeConfig } from '@/shared/config'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
 export const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const [current, setCurrent] = useState(location.pathname ?? AppRoutes.GAMES)
+    const [current, setCurrent] = useState(location.pathname ?? AppRoutes.MAIN)
+
     const { t } = useTranslation('navigate')
     const { currentUser } = useAuth()
 

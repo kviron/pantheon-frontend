@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import s from './main.module.scss'
 import { Layout, theme } from 'antd'
-import { Navbar } from '@/widgets/Navbar'
+import { Navbar } from '@/widgets/navbar'
 
 export const MainLayout = () => {
     const {
