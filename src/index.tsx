@@ -1,9 +1,10 @@
 /* @refresh reload */
 import 'reset-css'
-import './shared/config/i18n/i18n'
+import './shared/config/i18n.config'
+
 import { createRoot } from 'react-dom/client'
-import { AppProvider } from '@/app/providers/app'
 import App from '@/app/app'
+import { AppProvider } from '@/app/providers'
 
 const container = document.getElementById('root')
 
