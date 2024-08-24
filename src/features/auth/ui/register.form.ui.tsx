@@ -1,15 +1,11 @@
-import { Button, Checkbox, Col, Form, Input, Row, Select } from 'antd'
+import { Button, Checkbox, Form, Input, Select } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 const { Option } = Select
 
-interface DataNodeType {
-    value: string
-    label: string
-    children?: DataNodeType[]
-}
-
 export const RegisterForm = () => {
     const [form] = Form.useForm()
+    const { t } = useTranslation('auth')
 
     const onFinish = (values: any) => {
         console.log('Received values of form: ', values)
@@ -116,30 +112,9 @@ export const RegisterForm = () => {
                 rules={[{ required: true, message: 'Please select gender!' }]}
             >
                 <Select placeholder='select your gender'>
-                    <Option value='male'>Male</Option>
-                    <Option value='female'>Female</Option>
-                    <Option value='other'>Other</Option>
+                    <Option value='male'>{t('male')}</Option>
+                    <Option value='female'>{t('female')}</Option>
                 </Select>
-            </Form.Item>
-
-            <Form.Item
-                label='Captcha'
-                extra='We must make sure that your are a human.'
-            >
-                <Row gutter={8}>
-                    <Col span={12}>
-                        <Form.Item
-                            name='captcha'
-                            noStyle
-                            rules={[{ required: true, message: 'Please input the captcha you got!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Button>Get captcha</Button>
-                    </Col>
-                </Row>
             </Form.Item>
 
             <Form.Item
@@ -153,7 +128,8 @@ export const RegisterForm = () => {
                 ]}
             >
                 <Checkbox>
-                    I have read the <a href=''>agreement</a>
+                    {t('I have read the')}
+                    <a href=''>{t('agreement')}</a>
                 </Checkbox>
             </Form.Item>
             <Form.Item>
@@ -161,7 +137,7 @@ export const RegisterForm = () => {
                     type='primary'
                     htmlType='submit'
                 >
-                    Register
+                    {t('Sign up')}
                 </Button>
             </Form.Item>
         </Form>

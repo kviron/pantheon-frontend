@@ -5,5 +5,7 @@
     "Profile": "Профиль",
     "Settings": "Настройки",
     "Page 404": "Страница 404",
-    "Forbidden": "нет доступа"
+    "Forbidden": "нет доступа",
+    "Oops!": "Упс!",
+    "Sorry, an unexpected error has occurred.": "К сожалению, произошла непредвиденная ошибка."
 }

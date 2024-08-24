@@ -1,7 +1,7 @@
 import { Routes } from 'react-router'
-import { CenterLayout } from '@/shared/layouts/CenterLayout'
+import { CenterLayout } from '@/shared/layouts/center'
 import { Route } from 'react-router-dom'
-import { routeConfig } from '@/app/providers/RouterProvider'
+import { routeConfig } from '@/shared/config'
 
 export const AuthEntry = () => {
     return (

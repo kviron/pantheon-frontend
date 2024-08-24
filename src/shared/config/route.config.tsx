@@ -11,7 +11,6 @@ import {
     getRouteMain,
     getRouteProfile,
     getRouteSettings,
-    getRouteGames,
     getRouteGameDetails,
     getRouteLibrary,
     getRouteDownLoads,
@@ -19,6 +18,7 @@ import {
     getRouteRegister
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
+import { RegisterPage } from '@/pages/register'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -26,12 +26,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <MainPage />,
         nameKey: AppRoutes.MAIN,
         isMainMenu: false
-    },
-    [AppRoutes.GAMES]: {
-        path: getRouteGames(),
-        nameKey: AppRoutes.GAMES,
-        element: <MainPage />,
-        isMainMenu: true
     },
     [AppRoutes.LIBRARY]: {
         path: getRouteLibrary(),
@@ -78,7 +72,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.Register]: {
         path: getRouteRegister(),
-        element: <LoginPage />,
+        element: <RegisterPage />,
         nameKey: AppRoutes.Register,
         isMainMenu: false
     },

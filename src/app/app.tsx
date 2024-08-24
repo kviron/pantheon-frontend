@@ -1,11 +1,8 @@
-import { routeConfig } from '@/shared/config'
-import { Routes } from 'react-router'
-import { Route, useNavigate } from 'react-router-dom'
-import { MainLayout } from '@/shared/layouts/main'
-import { useAuth } from '@/features/auth'
-import { AuthEntry } from '@/features/auth/ui/auth.entry.tsx'
+import { useNavigate } from 'react-router-dom'
+import { useAuth, AuthEntry } from '@/features/auth'
 import { getRouteLogin } from '@/shared/const/router.ts'
 import { useEffect } from 'react'
+import { MainEntry } from '@/features/mainEntry'
 
 const App = () => {
     const { isAuthenticated } = useAuth()
@@ -21,26 +18,7 @@ const App = () => {
         return <AuthEntry />
     }
 
-    return (
-        <Routes>
-            {Object.values(routeConfig)
-                .filter(route => route.isMainMenu)
-                .map(route => {
-                    return (
-                        <Route
-                            key={route.path}
-                            path='/'
-                            element={<MainLayout />}
-                        >
-                            <Route
-                                path={route.path}
-                                element={route.element}
-                            />
-                        </Route>
-                    )
-                })}
-        </Routes>
-    )
+    return <MainEntry />
 }
 
 export default App
