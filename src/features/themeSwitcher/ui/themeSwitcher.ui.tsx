@@ -1,19 +1,19 @@
-import { useTheme } from '@/shared/hooks/useTheme.ts';
-import { Button } from 'antd';
-import { MoonOutlined, SunOutlined } from '@ant-design/icons';
-import type { SizeType } from 'antd/es/config-provider/SizeContext';
+import { useTheme } from '@/shared/hooks/useTheme.ts'
+import { Button } from 'antd'
+import { MoonOutlined, SunOutlined } from '@ant-design/icons'
+import type { SizeType } from 'antd/es/config-provider/SizeContext'
 
 export type ThemeSwitcherProps = {
-    size?: SizeType;
-};
+    size?: SizeType
+}
 
 export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
-    const { toggleTheme, theme } = useTheme();
-    const { size } = props;
+    const { toggleTheme, theme } = useTheme()
+    const { size } = props
 
     const onToggleHandler = () => {
-        toggleTheme();
-    };
+        toggleTheme()
+    }
 
     return (
         <Button
@@ -22,5 +22,5 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
             size={size}
             type={'text'}
         />
-    );
-};
+    )
+}

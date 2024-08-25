@@ -1,5 +1,6 @@
-import { $apiAuth, ApiService } from '@/shared/api'
+import { $apiAuth } from '@/shared/api'
 import { Application } from './application.types.ts'
+import { ApiService } from '@/shared/services'
 
 class ApplicationService extends ApiService {
     buildQueryParams() {}

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { Empty } from 'antd';
+import styled from '@emotion/styled'
+import { Empty } from 'antd'
 
 export const StyledEmpty = styled(Empty)`
     width: 100%;
@@ -9,4 +9,4 @@ export const StyledEmpty = styled(Empty)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
+`

@@ -1,11 +1,10 @@
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage.ts'
 import { Theme } from '@tauri-apps/api/window'
 import { ThemeContext, ThemeContextProps } from '@/shared/context/theme.context.ts'
 import { FC, useEffect, useMemo, useState } from 'react'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, theme } from 'antd'
 import { getThemeConfig } from '@/shared/config/theme.config'
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react'
-import { theme } from 'antd'
+import { ELocalStorageKey, localStorageService } from '@/shared/services'
 
 type ThemeProviderProps = {
     initialTheme?: Theme
@@ -24,7 +23,7 @@ const EmotionProvider = ({ children }: EmotionProviderProps) => {
     return <EmotionThemeProvider theme={token}>{children}</EmotionThemeProvider>
 }
 
-const fallbackTheme = window.localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme
+const fallbackTheme = localStorageService.get(ELocalStorageKey.THEME) as Theme
 
 export const ThemeProvider: FC<ThemeProviderProps> = props => {
     const [isThemeInited, setThemeInited] = useState<boolean>(false)
@@ -41,7 +40,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = props => {
     }
 
     useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme)
+        localStorageService.set(ELocalStorageKey.THEME, theme)
     }, [theme])
 
     const themeConfig = useMemo(() => {

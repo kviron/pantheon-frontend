@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import { Layout } from 'antd';
-import { css } from '@emotion/react';
-import { scrollBox } from '@/shared/styles';
+import styled from '@emotion/styled'
+import { Layout } from 'antd'
+import { css } from '@emotion/react'
+import { scrollBox } from '@/shared/styles'
 
 export const SettingsContent = styled(Layout.Content)(
     ({ theme }) => css`
@@ -18,5 +18,5 @@ export const SettingsContent = styled(Layout.Content)(
         border-radius: 1rem;
 
         ${scrollBox}
-    `,
-);
+    `
+)

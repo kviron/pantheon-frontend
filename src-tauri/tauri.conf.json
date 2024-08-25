@@ -32,7 +32,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.pantheon.dev",
+      "identifier": "com.pantheon.desktop",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",

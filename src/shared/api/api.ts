@@ -1,7 +1,6 @@
-import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios'
-import { errorCatch } from '@/shared/api/error.ts'
-import { authService } from '@/features/auth'
-import { authTokenService } from '@/features/auth/model/auth.token.service.ts'
+import axios, { CreateAxiosDefaults } from 'axios'
+import { errorCatch } from '@/shared/api/error'
+import { authService, authTokenService } from '@/features/auth'
 
 const options: CreateAxiosDefaults = {
     baseURL: __API__,
@@ -11,8 +10,8 @@ const options: CreateAxiosDefaults = {
     }
 }
 
-export const $api = axios.create(options)
-export const $apiAuth = axios.create(options)
+const $api = axios.create(options)
+const $apiAuth = axios.create(options)
 
 $apiAuth.interceptors.request.use(config => {
     const accessToken = authTokenService.getAccessToken()
@@ -50,14 +49,4 @@ $apiAuth.interceptors.response.use(
     }
 )
 
-class ApiService {
-    baseURL: string = ''
-    client: AxiosInstance
-
-    constructor(baseURL: string, client: AxiosInstance) {
-        this.baseURL = baseURL
-        this.client = client
-    }
-}
-
-export { ApiService }
+export { $api, $apiAuth }

@@ -1,5 +1,5 @@
-import { Input, List, Button, Skeleton } from 'antd'
-import { SearchOutlined, PlusOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Input, List, Skeleton } from 'antd'
+import { PlusOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
 import { Item, Resizer, Sidebar } from './controls.tsx'
 import { useLibraryStore } from '../../model/library.store.tsx'
 import { AppAvatar } from '@/shared/ui/AppAvatar'

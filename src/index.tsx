@@ -1,10 +1,11 @@
 /* @refresh reload */
-import 'reset-css'
 import './shared/config/i18n.config'
+import 'reset-css'
+import '@/app/styles/global.scss'
 
 import { createRoot } from 'react-dom/client'
-import App from '@/app/app'
 import { AppProvider } from '@/app/providers'
+import App from '@/app/app'
 
 const container = document.getElementById('root')
 

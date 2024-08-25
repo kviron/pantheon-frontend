@@ -7,15 +7,15 @@ import { SettingsPage } from '@/pages/settings'
 import { LibraryPage } from '@/pages/library'
 import {
     AppRoutes,
+    getRouteDownLoads,
     getRouteForbidden,
-    getRouteMain,
-    getRouteProfile,
-    getRouteSettings,
     getRouteGameDetails,
     getRouteLibrary,
-    getRouteDownLoads,
     getRouteLogin,
-    getRouteRegister
+    getRouteMain,
+    getRouteProfile,
+    getRouteRegister,
+    getRouteSettings
 } from '@/shared/const/router'
 import { AppRoutesProps } from '@/shared/types/router'
 import { RegisterPage } from '@/pages/register'
@@ -25,7 +25,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteMain(),
         element: <MainPage />,
         nameKey: AppRoutes.MAIN,
-        isMainMenu: false
+        isMainMenu: true
     },
     [AppRoutes.LIBRARY]: {
         path: getRouteLibrary(),

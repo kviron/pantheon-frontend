@@ -1,58 +1,58 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 type UseHorizontalResizeProps = {
-    minWidth?: number;
-    maxWidth?: number;
-    initWidth: number;
-};
+    minWidth?: number
+    maxWidth?: number
+    initWidth: number
+}
 
 export const useHorizontalResize = <T extends HTMLDivElement = HTMLDivElement>(props: UseHorizontalResizeProps) => {
-    const { minWidth = 0, maxWidth = 99999, initWidth } = props;
-    const ref = useRef<Nullable<T>>(null);
-    const resizerRef = useRef<Nullable<T>>(null);
-    const [isResizing, setIsResizing] = useState(false);
-    const [width, setWidth] = useState(initWidth);
+    const { minWidth = 0, maxWidth = 99999, initWidth } = props
+    const ref = useRef<Nullable<T>>(null)
+    const resizerRef = useRef<Nullable<T>>(null)
+    const [isResizing, setIsResizing] = useState(false)
+    const [width, setWidth] = useState(initWidth)
 
     const startResizing = useCallback(() => {
-        setIsResizing(true);
-    }, []);
+        setIsResizing(true)
+    }, [])
 
     const stopResizing = useCallback(() => {
-        setIsResizing(false);
-    }, []);
+        setIsResizing(false)
+    }, [])
 
     const resize = useCallback(
         (mouseMoveEvent: MouseEvent) => {
             if (isResizing && ref.current) {
-                const newWidth = mouseMoveEvent.clientX - ref.current.getBoundingClientRect().left;
+                const newWidth = mouseMoveEvent.clientX - ref.current.getBoundingClientRect().left
                 if (newWidth > minWidth && newWidth < maxWidth) {
-                    setWidth(newWidth);
+                    setWidth(newWidth)
                 }
-                document.body.style.userSelect = 'none';
-                document.body.style.cursor = 'col-resize';
+                document.body.style.userSelect = 'none'
+                document.body.style.cursor = 'col-resize'
             } else {
-                document.body.style.userSelect = '';
-                document.body.style.cursor = '';
+                document.body.style.userSelect = ''
+                document.body.style.cursor = ''
             }
         },
-        [isResizing, maxWidth, minWidth],
-    );
+        [isResizing, maxWidth, minWidth]
+    )
 
     useEffect(() => {
         if (resizerRef.current) {
-            resizerRef.current.onmousedown = startResizing;
+            resizerRef.current.onmousedown = startResizing
         }
-    }, [startResizing, resizerRef]);
+    }, [startResizing, resizerRef])
 
     useEffect(() => {
-        window.addEventListener('mousemove', resize);
-        window.addEventListener('mouseup', stopResizing);
+        window.addEventListener('mousemove', resize)
+        window.addEventListener('mouseup', stopResizing)
 
         return () => {
-            window.removeEventListener('mousemove', resize);
-            window.removeEventListener('mouseup', stopResizing);
-        };
-    }, [resize, startResizing, stopResizing]);
+            window.removeEventListener('mousemove', resize)
+            window.removeEventListener('mouseup', stopResizing)
+        }
+    }, [resize, startResizing, stopResizing])
 
     return {
         ref,
@@ -60,6 +60,6 @@ export const useHorizontalResize = <T extends HTMLDivElement = HTMLDivElement>(p
         width,
         isResizing,
         startResizing,
-        stopResizing,
-    };
-};
+        stopResizing
+    }
+}

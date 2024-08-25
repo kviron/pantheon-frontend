@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Form, Input, Flex } from 'antd'
+import { Button, Checkbox, Flex, Form, Input } from 'antd'
 import { AuthForm } from '../model/auth.types.ts'
 import { getRouteRegister } from '@/shared/const/router.ts'
 import { AppLink } from '@/shared/ui/AppLink'

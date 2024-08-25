@@ -7,7 +7,7 @@ import {
     ProductOutlined,
     SettingOutlined
 } from '@ant-design/icons'
-import { Button, Menu, MenuProps, Space, Badge, Tooltip } from 'antd'
+import { Badge, Button, Menu, MenuProps, Space, Tooltip } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ThemeSwitcher } from '@/features/themeSwitcher/ui/themeSwitcher.ui.tsx'

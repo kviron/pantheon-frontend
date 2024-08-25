@@ -1,51 +1,51 @@
-import { ThemeConfig } from 'antd/es/config-provider/context';
-import { Theme } from '@tauri-apps/api/window';
-import { theme as AntdTheme } from 'antd';
-import { mergeDeep } from 'immutable';
-import type { GlobalToken } from 'antd/es/theme';
+import { ThemeConfig } from 'antd/es/config-provider/context'
+import { Theme } from '@tauri-apps/api/window'
+import { theme as AntdTheme } from 'antd'
+import { mergeDeep } from 'immutable'
+import type { GlobalToken } from 'antd/es/theme'
 
 const colorDarkPallete = {
-    surface: '#2b2b30',
-};
+    surface: '#2b2b30'
+}
 
 const baseConfig: ThemeConfig = {
     token: {
-        colorPrimary: '#ff4400',
+        colorPrimary: '#ff4400'
     },
     components: {
         Layout: {
             headerHeight: 50,
             headerPadding: 0,
-            siderBg: '#fff',
-        },
+            siderBg: '#fff'
+        }
     },
     cssVar: true,
-    hashed: false,
-};
+    hashed: false
+}
 
 const darkThemeConfig: ThemeConfig = {
     algorithm: AntdTheme.darkAlgorithm,
     token: {
         colorBgContainer: colorDarkPallete.surface,
-        colorBgLayout: '#202023',
+        colorBgLayout: '#202023'
     },
     components: {
         Layout: {
-            siderBg: colorDarkPallete.surface,
-        },
-    },
-};
+            siderBg: colorDarkPallete.surface
+        }
+    }
+}
 
-export type PantheonTheme = GlobalToken;
+export type PantheonTheme = GlobalToken
 
 export const getThemeConfig = (theme: Theme): ThemeConfig => {
-    const lightTheme = { ...baseConfig };
-    const darkTheme = mergeDeep(baseConfig, { ...darkThemeConfig });
+    const lightTheme = { ...baseConfig }
+    const darkTheme = mergeDeep(baseConfig, { ...darkThemeConfig })
 
     switch (theme) {
         case 'dark':
-            return darkTheme;
+            return darkTheme
         case 'light':
-            return lightTheme;
+            return lightTheme
     }
-};
+}

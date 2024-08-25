@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { FileImage } from '@/shared/types/common.ts';
-import { HTMLAttributes, ImgHTMLAttributes } from 'react';
-import { Theme } from '@tauri-apps/api/window';
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { FileImage } from '@/shared/types/common.ts'
+import { HTMLAttributes, ImgHTMLAttributes } from 'react'
+import { Theme } from '@tauri-apps/api/window'
 
 type WrapperProps = HTMLAttributes<HTMLDivElement> & {
-    background: Nullable<FileImage>;
-};
+    background: Nullable<FileImage>
+}
 
 export const Wrapper = styled.div<WrapperProps>(
     ({ background }) => css`
@@ -18,12 +18,12 @@ export const Wrapper = styled.div<WrapperProps>(
 
         background-image: url(${background?.path ?? ''});
         background-size: cover;
-    `,
-);
+    `
+)
 
 type LogoProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
-    src?: string | null;
-};
+    src?: string | null
+}
 
 export const Logo = styled(({ src = '', ...other }: LogoProps) =>
     src ? (
@@ -32,7 +32,7 @@ export const Logo = styled(({ src = '', ...other }: LogoProps) =>
             alt={''}
             {...other}
         />
-    ) : null,
+    ) : null
 )`
     position: absolute;
     max-height: 60%;
@@ -43,11 +43,11 @@ export const Logo = styled(({ src = '', ...other }: LogoProps) =>
     transform: translate(-50%, -50%);
     user-select: none;
     cursor: default;
-`;
+`
 
 type ToolBarProps = HTMLAttributes<HTMLDivElement> & {
-    themeMode: Theme;
-};
+    themeMode: Theme
+}
 
 export const ToolBar = styled.div<ToolBarProps>(
     ({ themeMode }) => css`
@@ -66,5 +66,5 @@ export const ToolBar = styled.div<ToolBarProps>(
         align-items: center;
         background: ${themeMode === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'};
         backdrop-filter: blur(10px);
-    `,
-);
+    `
+)

@@ -1,7 +1,7 @@
-import { Avatar, AvatarProps } from 'antd';
+import { Avatar, AvatarProps } from 'antd'
 
-type AppAvatarProps = AvatarProps & {};
+type AppAvatarProps = AvatarProps & {}
 
 export const AppAvatar = (props: AppAvatarProps) => {
-    return <Avatar {...props} />;
-};
+    return <Avatar {...props} />
+}

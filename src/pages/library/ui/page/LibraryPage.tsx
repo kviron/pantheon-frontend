@@ -14,7 +14,7 @@ export const LibraryPage = () => {
     return (
         <Layout>
             <LibraryPageSidebar
-                games={data}
+                applications={data}
                 isLoading={isLoading}
                 isFetching={isFetching}
             />
