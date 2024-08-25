@@ -16,6 +16,7 @@ module.exports = {
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'unused-imports'],
     rules: {
         'unused-imports/no-unused-imports': 'error',
+        "no-use-before-define": ["error", { "variables": true }],
         'react/jsx-filename-extension': [
             2,
             {

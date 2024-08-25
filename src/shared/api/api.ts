@@ -10,8 +10,8 @@ const options: CreateAxiosDefaults = {
     }
 }
 
-const $api = axios.create(options)
-const $apiAuth = axios.create(options)
+export const $api = axios.create(options)
+export const $apiAuth = axios.create(options)
 
 $apiAuth.interceptors.request.use(config => {
     const accessToken = authTokenService.getAccessToken()
@@ -48,5 +48,3 @@ $apiAuth.interceptors.response.use(
         throw error
     }
 )
-
-export { $api, $apiAuth }

@@ -2,10 +2,10 @@ import { AxiosInstance } from 'axios'
 
 export class ApiService {
     baseURL: string = ''
-    client: AxiosInstance
+    api: AxiosInstance
 
-    constructor(baseURL: string, client: AxiosInstance) {
+    constructor(baseURL: string, api: AxiosInstance) {
         this.baseURL = baseURL
-        this.client = client
+        this.api = api
     }
 }
