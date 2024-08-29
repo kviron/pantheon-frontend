@@ -1,7 +1,6 @@
 import { MainPage } from '@/pages/main'
 import { ProfilePage } from '@/pages/profile'
 import { ForbiddenPage } from '@/pages/forbidden'
-import { NotFoundPage } from '@/pages/notFound'
 import { LoginPage } from '@/pages/login'
 import { SettingsPage } from '@/pages/settings'
 import { LibraryPage } from '@/pages/library'
@@ -39,11 +38,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         isMainMenu: false,
         nameKey: AppRoutes.SETTINGS
     },
-    [AppRoutes.Downloads]: {
+    [AppRoutes.DOWNLOADS]: {
         path: getRouteDownLoads(),
         element: <div></div>,
         isMainMenu: false,
-        nameKey: AppRoutes.Downloads
+        nameKey: AppRoutes.DOWNLOADS
     },
     [AppRoutes.PROFILE]: {
         path: getRouteProfile(':id'),
@@ -74,13 +73,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteRegister(),
         element: <RegisterPage />,
         nameKey: AppRoutes.Register,
-        isMainMenu: false
-    },
-    // last
-    [AppRoutes.NOT_FOUND]: {
-        path: '*',
-        element: <NotFoundPage />,
-        nameKey: AppRoutes.NOT_FOUND,
         isMainMenu: false
     }
 }

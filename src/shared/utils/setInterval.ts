@@ -11,6 +11,7 @@ export function setInterval(asyncCallback: () => Promise<number>, initialInterva
         if (currentInterval === null || currentInterval === undefined) {
             throw 'asyncCallback returned null or undefined'
         }
+        // eslint-disable-next-line no-use-before-define
         scheduleNext()
     }
 

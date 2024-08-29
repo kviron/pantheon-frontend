@@ -1,84 +1,64 @@
-import { Button, Checkbox, Form, Input, Select } from 'antd'
+import { Button, Checkbox, Form, Input, Select, Space, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../hooks/useAuth'
+import { AuthRegisterForm } from '../model/auth.types'
+import { AppLink } from '@/shared/ui/AppLink'
+import { getRouteLogin } from '@/shared/const/router'
+import { registerValidation } from '../model/auth.validation'
 
 const { Option } = Select
 
 export const RegisterForm = () => {
     const [form] = Form.useForm()
     const { t } = useTranslation('auth')
+    const { onRegister } = useAuth()
 
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values)
+    const onSubmit = (date: AuthRegisterForm) => {
+        onRegister(date)
     }
-
-    const prefixSelector = (
-        <Form.Item
-            name='prefix'
-            noStyle
-        >
-            <Select style={{ width: 70 }}>
-                <Option value='86'>+86</Option>
-                <Option value='87'>+87</Option>
-            </Select>
-        </Form.Item>
-    )
 
     return (
         <Form
             form={form}
+            layout='vertical'
             name='register'
-            onFinish={onFinish}
-            initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '86' }}
-            style={{ maxWidth: 600 }}
+            onFinish={onSubmit}
+            style={{ maxWidth: 800, minWidth: 360 }}
             scrollToFirstError
         >
-            <Form.Item
+            <Form.Item>
+                <Typography.Title>{t('Registration')}</Typography.Title>
+            </Form.Item>
+            <Form.Item<AuthRegisterForm>
                 name='email'
-                label='E-mail'
-                rules={[
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!'
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your E-mail!'
-                    }
-                ]}
+                label={t('E-mail')}
+                rules={registerValidation.email}
             >
                 <Input />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<AuthRegisterForm>
                 name='password'
-                label='Password'
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!'
-                    }
-                ]}
+                label={t('Password')}
+                rules={registerValidation.password}
                 hasFeedback
             >
                 <Input.Password />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<AuthRegisterForm>
                 name='confirm'
-                label='Confirm Password'
+                label={t('Confirm password')}
                 dependencies={['password']}
                 hasFeedback
                 rules={[
-                    {
-                        required: true,
-                        message: 'Please confirm your password!'
-                    },
+                    ...registerValidation.password,
                     ({ getFieldValue }) => ({
                         validator(_, value) {
                             if (!value || getFieldValue('password') === value) {
                                 return Promise.resolve()
                             }
-                            return Promise.reject(new Error('The new password that you entered do not match!'))
+                            return Promise.reject(new Error(t('The new password that you entered do not match!')))
                         }
                     })
                 ]}
@@ -86,34 +66,31 @@ export const RegisterForm = () => {
                 <Input.Password />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<AuthRegisterForm>
                 name='nickname'
-                label='Nickname'
-                tooltip='What do you want others to call you?'
-                rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                label={t('Nikname')}
+                tooltip={t('What do you want others to call you?')}
+                rules={registerValidation.nickname}
             >
                 <Input />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<AuthRegisterForm>
                 name='phone'
                 label='Phone Number'
-                rules={[{ required: true, message: 'Please input your phone number!' }]}
+                rules={registerValidation.phone}
             >
-                <Input
-                    addonBefore={prefixSelector}
-                    style={{ width: '100%' }}
-                />
+                <Input style={{ width: '100%' }} />
             </Form.Item>
 
-            <Form.Item
+            <Form.Item<AuthRegisterForm>
                 name='gender'
                 label='Gender'
-                rules={[{ required: true, message: 'Please select gender!' }]}
+                rules={registerValidation.gender}
             >
-                <Select placeholder='select your gender'>
-                    <Option value='male'>{t('male')}</Option>
-                    <Option value='female'>{t('female')}</Option>
+                <Select placeholder={t('Select your gender')}>
+                    <Option value='male'>{t('Male')}</Option>
+                    <Option value='female'>{t('Female')}</Option>
                 </Select>
             </Form.Item>
 
@@ -133,12 +110,16 @@ export const RegisterForm = () => {
                 </Checkbox>
             </Form.Item>
             <Form.Item>
-                <Button
-                    type='primary'
-                    htmlType='submit'
-                >
-                    {t('Sign up')}
-                </Button>
+                <Space size={'middle'}>
+                    <Button
+                        type='primary'
+                        htmlType='submit'
+                    >
+                        {t('Sign up')}
+                    </Button>
+                    {t('or')}
+                    <AppLink href={getRouteLogin()}>{t('Sign in')}</AppLink>
+                </Space>
             </Form.Item>
         </Form>
     )

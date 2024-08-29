@@ -7,6 +7,7 @@ export function loopUntilSuccess<T>(callback: () => Promise<T>, interval: number
             () => true
         )
         if (retry) {
+            // eslint-disable-next-line no-use-before-define
             scheduleNext()
         }
     }

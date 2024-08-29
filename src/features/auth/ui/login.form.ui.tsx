@@ -1,18 +1,20 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Flex, Form, Input } from 'antd'
-import { AuthForm } from '../model/auth.types.ts'
+import { LockOutlined, UserOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import { Button, Checkbox, Divider, Flex, Form, Input, Space } from 'antd'
+import { AuthLoginForm } from '../model/auth.types.ts'
 import { getRouteRegister } from '@/shared/const/router.ts'
 import { AppLink } from '@/shared/ui/AppLink'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '@/features/auth'
+import { useAuth } from '../hooks/useAuth'
+import { loginValidation } from '../model/auth.validation.ts'
+import { Logo } from '@/shared/ui/Logo'
 
 export const LoginForm = () => {
     const [form] = Form.useForm()
     const { t } = useTranslation('auth')
-    const { onAuth } = useAuth()
+    const { onLogin } = useAuth()
 
-    const onSubmit = (date: AuthForm) => {
-        onAuth(date)
+    const onSubmit = (date: AuthLoginForm) => {
+        onLogin(date)
     }
 
     return (
@@ -20,32 +22,34 @@ export const LoginForm = () => {
             form={form}
             name='login'
             initialValues={{ remember: true }}
-            style={{ maxWidth: 360 }}
+            style={{ maxWidth: 300, minWidth: 300 }}
             onFinish={onSubmit}
         >
+            <Form.Item>
+                <Flex
+                    justify='center'
+                    align='center'
+                >
+                    <Logo />
+                </Flex>
+            </Form.Item>
             <Form.Item
                 name='email'
-                rules={[
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!'
-                    },
-                    { required: true, message: 'Please input your Username!' }
-                ]}
+                rules={loginValidation.email}
             >
                 <Input
                     prefix={<UserOutlined />}
-                    placeholder='E-mail'
+                    placeholder={t('E-mail')}
                 />
             </Form.Item>
             <Form.Item
                 name='password'
-                rules={[{ required: true, message: 'Please input your Password!' }]}
+                rules={loginValidation.password}
             >
                 <Input
                     prefix={<LockOutlined />}
                     type='password'
-                    placeholder='Password'
+                    placeholder={t('Password')}
                 />
             </Form.Item>
             <Form.Item>
@@ -72,7 +76,14 @@ export const LoginForm = () => {
                 >
                     {t('Log in')}
                 </Button>
-                {t('or')} <AppLink href={getRouteRegister()}>{t('Register now!')}</AppLink>
+                <Divider plain>{t('or')}</Divider>
+                <AppLink href={getRouteRegister()}>
+                    <Flex justify='center'>
+                        <Space align='center'>
+                            {t('Create your account')} <ArrowRightOutlined style={{ fontSize: '12px' }} />
+                        </Space>
+                    </Flex>
+                </AppLink>
             </Form.Item>
         </Form>
     )

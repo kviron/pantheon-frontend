@@ -1,6 +1,5 @@
 import { App } from 'antd'
 import { ReactNode, StrictMode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary } from './error.provider'
 import { QueryProvider } from './query.provider'
 import { ThemeProvider } from './theme.provider'
@@ -15,13 +14,11 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         <StrictMode>
             <ErrorBoundary>
                 <TorrentProvider>
-                    <BrowserRouter>
-                        <QueryProvider>
-                            <ThemeProvider>
-                                <App>{children}</App>
-                            </ThemeProvider>
-                        </QueryProvider>
-                    </BrowserRouter>
+                    <QueryProvider>
+                        <ThemeProvider>
+                            <App>{children}</App>
+                        </ThemeProvider>
+                    </QueryProvider>
                 </TorrentProvider>
             </ErrorBoundary>
         </StrictMode>

@@ -1,6 +1,6 @@
 import { TorrentAPIContext } from '@/shared/context'
 import { ReactNode } from 'react'
-import { TorrentApi } from '@/shared/api'
+import { torrentService } from '@/features/torrent/model/torrent.service.ts'
 
 type TorrentProviderProps = {
     children: ReactNode
@@ -9,5 +9,5 @@ type TorrentProviderProps = {
 export const TorrentProvider = (props: TorrentProviderProps) => {
     const { children } = props
 
-    return <TorrentAPIContext.Provider value={TorrentApi}>{children}</TorrentAPIContext.Provider>
+    return <TorrentAPIContext.Provider value={torrentService}>{children}</TorrentAPIContext.Provider>
 }

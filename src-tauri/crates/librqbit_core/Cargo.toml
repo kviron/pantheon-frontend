@@ -1,0 +1,33 @@
+[package]
+name = "librqbit-core"
+version = "4.0.0"
+edition = "2021"
+description = "Important utilities used throughout librqbit useful for working with torrents."
+license = "Apache-2.0"
+documentation = "https://docs.rs/librqbit-core"
+repository = "https://github.com/ikatson/rqbit"
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tracing = "0.1.40"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time"] }
+hex = "0.4"
+anyhow = "1"
+url = "2"
+uuid = { version = "1", features = ["v4"] }
+parking_lot = "0.12"
+serde = { version = "1", features = ["derive"] }
+buffers = { path = "../buffers", package = "librqbit-buffers", version = "4" }
+bencode = { path = "../bencode", default-features = false, package = "librqbit-bencode", version = "3" }
+clone_to_owned = { path = "../clone_to_owned", package = "librqbit-clone-to-owned", version = "3" }
+itertools = "0.12"
+directories = "5"
+tokio-util = "0.7.10"
+data-encoding = "2.6.0"
+bytes = "1.7.1"
+
+
+[dev-dependencies]
+serde_json = "1"

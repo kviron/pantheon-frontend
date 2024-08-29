@@ -1,22 +1,28 @@
-export type SortOrder = 'asc' | 'desc';
+import { Rule } from 'antd/es/form'
+
+export type SortOrder = 'asc' | 'desc'
 
 export enum AppType {
-    Game = 'game',
+    Game = 'game'
 }
 
 export interface FileDescription {
-    path: string;
+    path: string
 }
 
 export interface FileImage extends FileDescription {
     /** Alt текст картинки */
-    alt: Nullable<string>;
+    alt: Nullable<string>
     /** Title текст картинки */
-    title: Nullable<string>;
+    title: Nullable<string>
 }
 
 export enum OS {
     Windows = 'Windows',
     MacOS = 'MacOS',
-    linux = 'Linux',
+    linux = 'Linux'
+}
+
+export type ValidationObject<T> = {
+    [K in keyof T]: Rule[]
 }

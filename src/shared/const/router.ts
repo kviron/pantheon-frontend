@@ -1,15 +1,13 @@
 export enum AppRoutes {
     MAIN = 'main',
     SETTINGS = 'settings',
-    Downloads = 'downloads',
+    DOWNLOADS = 'downloads',
     PROFILE = 'profile',
     GAME_DETAILS = 'game_details',
     FORBIDDEN = 'forbidden',
     LIBRARY = 'library',
     Login = 'login',
-    Register = 'register',
-    // last
-    NOT_FOUND = 'not_found'
+    Register = 'register'
 }
 
 export const getRouteMain = () => '/'
@@ -26,7 +24,7 @@ export const getRouteRegister = () => `/register`
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,
     [getRouteSettings()]: AppRoutes.SETTINGS,
-    [getRouteDownLoads()]: AppRoutes.Downloads,
+    [getRouteDownLoads()]: AppRoutes.DOWNLOADS,
     [getRouteProfile(':id')]: AppRoutes.PROFILE,
     [getRouteLibrary()]: AppRoutes.LIBRARY,
     [getRouteGameDetails(':id')]: AppRoutes.GAME_DETAILS,

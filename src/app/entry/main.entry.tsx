@@ -1,27 +1,50 @@
-import { Routes } from 'react-router'
 import { MainLayout } from '@/shared/layouts/main'
-import { Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { routeConfig } from '@/shared/config'
+import { ErrorPage } from '@/pages/error'
+import { AppRoutes } from '@/shared/const/router.ts'
+import { authProtector } from '@/features/auth'
+import { CenterLayout } from '@/shared/layouts/center'
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <MainLayout />,
+        errorElement: <ErrorPage />,
+        children: Object.values(routeConfig)
+            .filter(route => route.nameKey !== AppRoutes.Login && route.nameKey !== AppRoutes.Register)
+            .map(route => ({
+                index: route.nameKey === AppRoutes.MAIN,
+                path: route.path,
+                element: route.element,
+                loader:
+                    route.nameKey !== AppRoutes.Login && route.nameKey !== AppRoutes.Register
+                        ? authProtector
+                        : undefined
+            }))
+    },
+    {
+        path: '/' + routeConfig.login.path,
+        element: <CenterLayout />,
+        children: [
+            {
+                index: true,
+                element: routeConfig.login.element
+            }
+        ]
+    },
+    {
+        path: '/' + routeConfig.register.path,
+        element: <CenterLayout />,
+        children: [
+            {
+                index: true,
+                element: routeConfig.register.element
+            }
+        ]
+    }
+])
 
 export const MainEntry = () => {
-    return (
-        <Routes>
-            {Object.values(routeConfig)
-                .filter(route => route.isMainMenu)
-                .map(route => {
-                    return (
-                        <Route
-                            key={route.path}
-                            path='/'
-                            element={<MainLayout />}
-                        >
-                            <Route
-                                path={route.path}
-                                element={route.element}
-                            />
-                        </Route>
-                    )
-                })}
-        </Routes>
-    )
+    return <RouterProvider router={router} />
 }
