@@ -13,3 +13,7 @@ export type AuthRegisterForm = {
     phone: Nullable<string>
     gender: UserGender
 }
+
+export type AuthForgotForm = {
+    email: string
+}

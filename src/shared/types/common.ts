@@ -1,5 +1,3 @@
-import { Rule } from 'antd/es/form'
-
 export type SortOrder = 'asc' | 'desc'
 
 export enum AppType {
@@ -21,8 +19,4 @@ export enum OS {
     Windows = 'Windows',
     MacOS = 'MacOS',
     linux = 'Linux'
-}
-
-export type ValidationObject<T> = {
-    [K in keyof T]: Rule[]
 }
