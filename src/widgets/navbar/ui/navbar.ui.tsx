@@ -13,8 +13,10 @@ import { useTranslation } from 'react-i18next'
 import { ThemeSwitcher } from '@/features/themeSwitcher/ui/themeSwitcher.ui.tsx'
 import { useEffect, useState } from 'react'
 import { AppRoutes } from '@/shared/const/router.ts'
-import { useAuth } from '@/features/auth'
 import { routeConfig } from '@/shared/config'
+import { useUserStore } from '@/entities/user'
+import { tauriService } from '@/shared/services'
+import { getRouteSettingsAccount } from '@/pages/settings/routing/routing.utils'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -24,7 +26,7 @@ export const Navbar = () => {
     const [current, setCurrent] = useState(location.pathname ?? AppRoutes.MAIN)
 
     const { t } = useTranslation('navigate')
-    const { currentUser } = useAuth()
+    const { user } = useUserStore()
 
     const handleGoBack = () => {
         navigate(-1)
@@ -34,8 +36,9 @@ export const Navbar = () => {
         navigate(1)
     }
 
-    const items: MenuItem[] = Object.values(routeConfig).map(route => {
-        if (route.isMainMenu) {
+    const items: MenuItem[] = Object.values(routeConfig)
+        .filter(route => route.isMainMenu)
+        .map(route => {
             return {
                 type: 'item',
                 route: route.path,
@@ -52,18 +55,15 @@ export const Navbar = () => {
                               },
                               { label: 'Загрузки', key: '/downloads', icon: <DownloadOutlined /> }
                           ]
-                        : null
+                        : undefined
             }
-        }
+        })
 
-        return null
-    })
-
-    if (currentUser && routeConfig.profile.path) {
+    if (user && routeConfig.profile.path) {
         const profileItem: MenuItem = {
             type: 'item',
             key: routeConfig.profile.path,
-            label: currentUser.email.toUpperCase()
+            label: user.email.toUpperCase()
         }
         items.push(profileItem)
     }
@@ -98,7 +98,6 @@ export const Navbar = () => {
                     mode='horizontal'
                     triggerSubMenuAction={'hover'}
                     onClick={onClick}
-                    selectedKeys={[current]}
                     items={items}
                 />
             </div>
@@ -127,10 +126,16 @@ export const Navbar = () => {
                 </Tooltip>
                 <Tooltip
                     placement='bottom'
-                    title={'Настройки'}
+                    title={t('Settings')}
                 >
                     <Button
                         type={'text'}
+                        onClick={() =>
+                            tauriService.openNewWindow({
+                                path: getRouteSettingsAccount(),
+                                title: t(AppRoutes.SETTINGS)
+                            })
+                        }
                         icon={<SettingOutlined />}
                     />
                 </Tooltip>

@@ -2,7 +2,6 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod config;
-
 use std::{
     fs::{File, OpenOptions},
     io::{BufReader, BufWriter},
@@ -169,7 +168,7 @@ async fn api_from_config(
 
 impl State {
     async fn new(init_logging: InitLoggingResult) -> Self {
-        let config_filename = directories::ProjectDirs::from("com", "rqbit", "desktop")
+        let config_filename = directories::ProjectDirs::from("com", "pantheon", "desktop")
             .expect("directories::ProjectDirs::from")
             .config_dir()
             .join("config.json")
@@ -375,6 +374,23 @@ fn get_version() -> &'static str {
     env!("CARGO_PKG_VERSION")
 }
 
+#[tauri::command]
+async fn open_new_window(
+    app_handle: tauri::AppHandle,
+    title: String,
+    path: String
+) -> Result<(), String> {
+    tauri::WindowBuilder::new(
+        &app_handle,
+        title.clone(), // Clone here
+        tauri::WindowUrl::App(path.into())
+    )
+    .title(title)
+    .build()
+    .map_err(|e| e.to_string())?;
+    Ok(())
+}
+
 async fn start() {
     tauri::async_runtime::set(tokio::runtime::Handle::current());
     let init_logging_result = init_logging(InitLoggingOptions {
@@ -409,6 +425,7 @@ async fn start() {
             config_default,
             config_current,
             config_change,
+            open_new_window,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

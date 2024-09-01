@@ -1,11 +1,12 @@
 {
-  "main": "Home",
-  "games": "Games",
-  "mods": "Mods",
-  "library": "Library",
-  "docs": "Documentation",
-  "settings": "Settings",
-  "profile": "Profile",
-  "not_found": "Not found",
-  "forbidden": "Forbidden"
+    "main": "Home",
+    "games": "Games",
+    "mods": "Mods",
+    "library": "Library",
+    "docs": "Documentation",
+    "Settings": "Settings",
+    "profile": "Profile",
+    "not_found": "Not found",
+    "forbidden": "Forbidden",
+    "settings": "Settings"
 }

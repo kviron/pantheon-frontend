@@ -4,6 +4,7 @@ import profile from '/locales/en/profile.json'
 import application from '/locales/en/application.json'
 import auth from '/locales/en/auth.json'
 import navigate from '/locales/en/navigate.json'
+import settings from '/locales/en/settings.json'
 
 declare module 'i18next' {
     interface CustomTypeOptions {
@@ -13,6 +14,7 @@ declare module 'i18next' {
             application: typeof application
             auth: typeof auth
             navigate: typeof navigate
+            settings: typeof settings
         }
     }
 }

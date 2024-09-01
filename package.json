@@ -7,8 +7,6 @@
         "start": "vite",
         "dev": "vite",
         "start:electron": "electron .",
-        "prepare": "panda codegen",
-        "dev:server": "node ./json-server/index.js",
         "build": "vite build",
         "serve": "vite preview",
         "tauri": "tauri dev",

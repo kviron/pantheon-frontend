@@ -1,10 +1,19 @@
 import { RouteProps } from 'react-router-dom'
 import { UserRole } from '@/entities/user'
-import { AppRoutes } from '@/shared/const/router'
+import { ReactNode } from 'react'
 
-export type AppRoutesProps = RouteProps & {
-    authOnly?: boolean
+export enum EAppRoutesType {
+    Front = 'front',
+    Auth = 'auth',
+    Admin = 'admin',
+    Error = 'error',
+    Window = 'window'
+}
+
+export type AppRoutesProps<Key extends string> = RouteProps & {
     isMainMenu: boolean
     roles?: UserRole[]
-    nameKey: AppRoutes
+    nameKey: Key
+    section: EAppRoutesType
+    icon?: ReactNode
 }

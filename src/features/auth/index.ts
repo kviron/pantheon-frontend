@@ -6,9 +6,10 @@ import { useAuth } from './hooks/useAuth'
 import { AuthEntry } from './auth.entry'
 import { RegisterForm } from '@/features/auth/ui/register.form.ui'
 import { authProtector } from '@/features/auth/model/auth.protector'
+import { ForgotForm } from './ui/forgot.form'
 
 export { useAuth, authService, authTokenService, ETokens }
 
-export { LoginForm, RegisterForm, AuthEntry, authProtector }
+export { LoginForm, RegisterForm, AuthEntry, ForgotForm, authProtector }
 
 export type { AuthRegisterForm, AuthLoginForm }

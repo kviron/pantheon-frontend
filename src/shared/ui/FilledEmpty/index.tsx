@@ -1,5 +1,5 @@
 import { EmptyProps } from 'antd'
-import { StyledEmpty } from '@/shared/ui/FilledEmpty/controls.tsx'
+import { StyledEmpty } from './controls.tsx'
 
 export const FilledEmpty = (props: EmptyProps) => {
     return (

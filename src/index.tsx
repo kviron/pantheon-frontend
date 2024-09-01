@@ -5,7 +5,7 @@ import '@/app/styles/global.scss'
 
 import { createRoot } from 'react-dom/client'
 import { AppProvider } from '@/app/providers'
-import App from '@/app/app'
+import { AppEntry } from '@/app/app.entry.tsx'
 
 const container = document.getElementById('root')
 
@@ -17,6 +17,6 @@ const root = createRoot(container)
 
 root.render(
     <AppProvider>
-        <App />
+        <AppEntry />
     </AppProvider>
 )

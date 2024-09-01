@@ -1,3 +1,5 @@
-import SettingsPage from './ui/Page/SettingsPage.tsx'
+import { SettingsPageEntry } from './ui/settings.entry.tsx'
+import { settingsRouteConfig } from './routing/routing.conf.tsx'
+import { SettingsPageAccount } from './ui/settings.account.tsx'
 
-export { SettingsPage }
+export { SettingsPageEntry, settingsRouteConfig, SettingsPageAccount }

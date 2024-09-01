@@ -1,14 +1,20 @@
 import { LockOutlined, UserOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Divider, Flex, Form, Input, Space } from 'antd'
 import { AuthLoginForm } from '../model/auth.types.ts'
-import { getRouteRegister } from '@/shared/const/router.ts'
+import { getRouteForgot, getRouteRegister } from '@/shared/const/router.ts'
 import { AppLink } from '@/shared/ui/AppLink'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth'
 import { loginValidation } from '../model/auth.validation.ts'
 import { Logo } from '@/shared/ui/Logo'
 
-export const LoginForm = () => {
+export type LoginFormProps = {
+    goToLogin?: string
+}
+
+export const LoginForm = (props: LoginFormProps) => {
+    const { goToLogin } = props
+
     const [form] = Form.useForm()
     const { t } = useTranslation('auth')
     const { onLogin } = useAuth()
@@ -21,6 +27,7 @@ export const LoginForm = () => {
         <Form
             form={form}
             name='login'
+            size='large'
             initialValues={{ remember: true }}
             style={{ maxWidth: 300, minWidth: 300 }}
             onFinish={onSubmit}
@@ -64,7 +71,7 @@ export const LoginForm = () => {
                     >
                         <Checkbox>{t('Remember me')}</Checkbox>
                     </Form.Item>
-                    <AppLink href={getRouteRegister()}>{t('Forgot password')}</AppLink>
+                    <AppLink href={getRouteForgot()}>{t('Forgot password')}</AppLink>
                 </Flex>
             </Form.Item>
 
