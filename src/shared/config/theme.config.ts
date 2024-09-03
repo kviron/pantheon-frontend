@@ -8,9 +8,16 @@ const colorDarkPallete = {
     surface: '#2b2b30'
 }
 
-const baseConfig: ThemeConfig = {
+type ThemeConfigPantheon = ThemeConfig & {
+    token: ThemeConfig['token'] & {
+        titleBarHeight?: number
+    }
+}
+
+const baseConfig: ThemeConfigPantheon = {
     token: {
-        colorPrimary: '#ff4400'
+        colorPrimary: '#ff4400',
+        titleBarHeight: 30
     },
     components: {
         Layout: {
@@ -23,7 +30,7 @@ const baseConfig: ThemeConfig = {
     hashed: false
 }
 
-const darkThemeConfig: ThemeConfig = {
+const darkThemeConfig: ThemeConfigPantheon = {
     algorithm: AntdTheme.darkAlgorithm,
     token: {
         colorBgContainer: colorDarkPallete.surface,

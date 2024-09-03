@@ -385,6 +385,8 @@ async fn open_new_window(
         title.clone(), // Clone here
         tauri::WindowUrl::App(path.into())
     )
+    .decorations(false)
+    .transparent(true)
     .title(title)
     .build()
     .map_err(|e| e.to_string())?;

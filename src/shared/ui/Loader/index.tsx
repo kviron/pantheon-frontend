@@ -1,5 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons'
 
 export const Loader = () => {
-    return <LoadingOutlined />
+    return <LoadingOutlined size={60} />
 }

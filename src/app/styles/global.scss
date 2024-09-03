@@ -1,5 +1,14 @@
+:root {
+  --title-bar-height: 30px
+}
+
 * {
   scrollbar-color: unset;
+}
+
+body {
+  border-radius: 20px; /* Установите желаемое значение радиуса */
+  overflow: hidden;
 }
 
 /* Кастомизация скроллбара для браузеров, поддерживающих WebKit */

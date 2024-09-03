@@ -1,8 +1,6 @@
 import { Layout } from 'antd'
-import { Wrapper } from './windowSideBar.styled.tsx'
+import { Wrapper, WrapperSider } from './windowSideBar.styled.tsx'
 import { ReactNode } from 'react'
-
-const { Sider } = Layout
 
 export type WindowSideBarLayoutProps = {
     sidebar: ReactNode
@@ -12,7 +10,7 @@ export type WindowSideBarLayoutProps = {
 export const WindowSideBarLayout = ({ sidebar, children }: WindowSideBarLayoutProps) => {
     return (
         <Layout>
-            <Sider>{sidebar}</Sider>
+            <WrapperSider>{sidebar}</WrapperSider>
             <Wrapper>{children}</Wrapper>
         </Layout>
     )

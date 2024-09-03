@@ -1,16 +1,22 @@
+import { Wrapper } from './logo.styled.tsx'
 import { Typography } from 'antd'
 
-export const Logo = () => {
+const { Title } = Typography
+
+type LogoProps = {
+    size?: 'small'
+    textTransform?: 'uppercase' | 'lowercase'
+}
+
+const logoText = 'Pantheon'
+
+export const Logo = (props: LogoProps) => {
+    const { size = 'small', textTransform = 'uppercase', ...rest } = props
+
     return (
-        <Typography.Title
-            style={{
-                fontFamily: '"Audiowide", sans-serif',
-                letterSpacing: '.172em',
-                userSelect: 'none',
-                textWrap: 'nowrap'
-            }}
-        >
-            {'PANTHEON'}
-        </Typography.Title>
+        <Wrapper>
+            {size === 'small' && <span>{logoText}</span>}
+            {size === 'large' && <Title>{logoText}</Title>}
+        </Wrapper>
     )
 }

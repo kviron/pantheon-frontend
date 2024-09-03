@@ -1,5 +1,5 @@
 .content {
-  height: calc(100vh - var(--ant-layout-header-height));
+  height: calc(100vh - var(--ant-layout-header-height) - var(--title-bar-height));
   overflow-x: hidden;
   overflow-y: auto;
 }
